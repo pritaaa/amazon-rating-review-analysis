@@ -5,8 +5,8 @@ Project ini menganalisis ulasan produk Amazon untuk memahami opini pelanggan ser
 
 ## 1. Dataset
 
-Sumber: Kaggle (https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset)
-Jumlah Data: 1351
+Sumber: Kaggle (https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset),
+Jumlah Data: 1351,
 Kolom Penting:
 - category
 - discounted_price
