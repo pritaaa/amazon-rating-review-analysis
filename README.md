@@ -1,5 +1,5 @@
 # Analisis Review Amazon Menggunakan NLP & Machine Learning
-
+Project ini menganalisis ulasan produk Amazon untuk memahami opini pelanggan serta memprediksi rating menggunakan metode NLP dan machine learning. Hasil analisis memberikan insight actionable bagi tim marketing, product management, dan stakeholder bisnis.
 
 ## 1. Dataset
 
