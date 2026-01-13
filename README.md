@@ -1,112 +1,55 @@
 # Analisis Review Amazon Menggunakan NLP & Machine Learning
-# Health Insurance Pricing & Risk Analysis
-
+Amazon Rating Analysis (Customer Insight & Quality Monitoring)
 ## Business Context
+Sebagai marketplace besar, Amazon perlu memahami kualitas produk dan potensi risiko keluhan pelanggan dari review teks yang masuk setiap hari. Project ini berperan sebagai simulasi pekerjaan Data Analyst / Business Analyst yang membantu tim Product, Marketing, dan Seller Management membaca sinyal awal dari customer feedback.
 
-Perusahaan asuransi kesehatan perlu menyeimbangkan **profitabilitas** dan **manajemen risiko**. Tantangan utama:
+## Business Questions
+* Kategori produk mana yang paling berisiko menghasilkan review negatif?
+* Apakah sentiment review bisa digunakan sebagai early signal sebelum rating turun?
+* Bagaimana insight review dapat membantu prioritas perbaikan produk dan campaign?
 
-* Menentukan premi yang adil namun tetap menguntungkan
-* Mengidentifikasi pelanggan berisiko tinggi sejak awal
-* Mengurangi lonjakan biaya klaim melalui strategi preventif
+## Data Overview
+Sumber: Amazon Product Reviews (Kaggle)
+Total data: 1.351 review
+Informasi utama: kategori produk, harga & diskon, rating, isi review teks
 
-Project ini mensimulasikan peran **Data / Business Analyst** dalam membantu tim **Underwriting, Pricing, dan Marketing** mengambil keputusan berbasis data.
+## Key Metrics & Dimensions
+* Metrics
+*  Rating (1–5)
+*  Sentiment score
+*  Rating class (Low / Mid / High)
+  
+## Dimensions
+*  Product category
+*  Review text
+*  Price & discount
+*  Analysis Summary (Insight-Oriented)
+  
+### 1. Customer Sentiment vs Rating
+*  Mayoritas review bersentimen positif, namun sentiment tinggi tidak selalu berarti rating tinggi.
+*  Korelasi sentiment–rating lemah → risiko produk bermasalah bisa tersembunyi di balik review positif generik.
 
----
+### 2. Category Risk Profiling
+*  Electronics: volume review tinggi, sentiment relatif rendah, rating paling fluktuatif → kategori paling berisiko.
+*  Health & Beauty: rating stabil dan konsisten → kualitas produk lebih terjaga.
 
-## Objective (Business-Oriented)
+### 3. NLP Insight (What Customers Care About)
+* Kata dominan: quality, price, worth the money.
+*  Fokus pelanggan bukan fitur kompleks, tapi value for money & kualitas dasar.
 
-* Membantu tim underwriting mengelompokkan pelanggan berdasarkan tingkat risiko
-* Mendukung tim pricing dalam menentukan **tier premi**
-* Memberikan simulasi kebijakan (what-if analysis) untuk menurunkan biaya klaim
-
----
-
-## Stakeholders
-
-* **Underwriting Team** – klasifikasi risiko pelanggan
-* **Pricing Team** – penentuan premi berbasis risiko
-* **Marketing / Health Program Team** – program preventif (diet, stop smoking)
-
----
-
-## Dataset
-
-* Source: Medical Insurance Cost Dataset (Kaggle)
-* Records: 1,338 pelanggan
-* Key Features:
-
-  * Age, BMI, Smoker Status, Children, Region
-  * Target: Insurance Charges
-
----
-
-## Tools & Workflow
-
-**Python (Pandas, NumPy)** – data cleaning & analysis
-**EDA & Visualization** – identifikasi pola risiko
-**Scikit-Learn** – regression & risk modeling
-**Scenario Analysis** – simulasi kebijakan bisnis
-
-Workflow:
-
-1. Data Cleaning & Validation
-2. Exploratory Data Analysis (EDA)
-3. Risk Scoring Development (0–100)
-4. Cost Prediction (Regression Model)
-5. Scenario Analysis (Policy Simulation)
-6. Business Insight & Recommendation
-
----
-
-## Key Analysis & Insights
-
-### Risk Drivers
-
-* **Smoker status** meningkatkan biaya hingga ±200–300%
-* **BMI tinggi** berhubungan langsung dengan lonjakan biaya
-* **Usia** menunjukkan peningkatan risiko yang stabil
-
-### High-Risk Segment
-
-Pelanggan dengan kombinasi:
-
-* Smoker
-* BMI tinggi
-* Usia menengah–lanjut
-
-Merupakan kontributor biaya tertinggi.
-
----
-
-## Scenario Analysis (What-If)
-
-* Menurunkan BMI sebesar 5 poin → penurunan prediksi biaya signifikan
-* Perubahan status **smoker → non-smoker** memberikan dampak terbesar
-
-Simulasi ini membantu tim memahami **dampak kebijakan preventif sebelum diterapkan**.
-
----
+### 4. Predictive Use Case
+*  Model klasifikasi mampu mendeteksi review berisiko rendah rating.
+*  Model regresi dapat memperkirakan rating hanya dari teks → berguna untuk early complaint detection.
 
 ## Business Recommendations
+*  Prioritaskan quality monitoring untuk kategori Electronics.
+*  Gunakan sentiment & keyword review sebagai alert system sebelum rating turun.
+*  Seller dengan review negatif berulang dapat diarahkan ke program quality improvement.
+*  Marketing dapat menyesuaikan campaign berdasarkan pain point utama pelanggan (harga & kualitas).
 
-* Terapkan **tiered premium pricing** berbasis risk score
-* Berikan **diskon premi** bagi pelanggan yang mengikuti program kesehatan
-* Prioritaskan program stop-smoking untuk segmen risiko tinggi
+## Tools & Workflow (Industry-Style)
+* Python (data cleaning & analysis)
+* NLP for text understanding
+* Machine Learning for prediction
+*  GitHub for documentation & collaboration
 
----
-
-## Business Impact (Estimated)
-
-* Potensi pengurangan biaya klaim jangka menengah
-* Profil risiko pelanggan lebih terkendali
-* Strategi pricing lebih transparan dan adil
-
----
-
-## Takeaway
-
-Project ini menunjukkan bagaimana analisis data dapat:
-
-* Menghubungkan data → keputusan bisnis
-* Mendukung strategi pricing & risk management
-* Digunakan langsung oleh tim non-teknis dalam pengambilan keputusan
