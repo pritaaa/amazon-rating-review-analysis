@@ -1,127 +1,112 @@
 # Analisis Review Amazon Menggunakan NLP & Machine Learning
-Project ini menganalisis ulasan produk Amazon untuk memahami opini pelanggan serta memprediksi rating menggunakan metode NLP dan machine learning. Hasil analisis memberikan insight actionable bagi tim marketing, product management, dan stakeholder bisnis.
+# Health Insurance Pricing & Risk Analysis
 
-## 1. Dataset
+## Business Context
 
-Sumber: Kaggle (https://www.kaggle.com/datasets/karkavelrajaj/amazon-sales-dataset),
-Jumlah Data: 1351,
-Kolom Penting:
-- category
-- discounted_price
-- actual_price 
-- discount_percentage 
-- rating 
-- rating_count - Number of people who voted for the Amazon rating
-- review_title - Short review
-- review_content - Long review
+Perusahaan asuransi kesehatan perlu menyeimbangkan **profitabilitas** dan **manajemen risiko**. Tantangan utama:
 
-## 2. Tools & Library
+* Menentukan premi yang adil namun tetap menguntungkan
+* Mengidentifikasi pelanggan berisiko tinggi sejak awal
+* Mengurangi lonjakan biaya klaim melalui strategi preventif
 
-Bahasa / Platform: Python, Google Colab / Jupyter Notebook
-Library: Pandas, Numpy, Scikit-Learn, Matplotlib, Seaborn, NLTK, spaCy, TextBlob / VADER, WordCloud
+Project ini mensimulasikan peran **Data / Business Analyst** dalam membantu tim **Underwriting, Pricing, dan Marketing** mengambil keputusan berbasis data.
 
-## 3. Objective / Tujuan
-- Membersihkan dan menyiapkan data review untuk analisis NLP & modelling
-- Menemukan tren dan insight dari review pelanggan (EDA)
-- Memprediksi sentimen review (Positive / Negative / Neutral)
-- Memprediksi rating akhir (1–5) dari review text
-- Memberikan rekomendasi actionable untuk seller dan pembeli
+---
 
-## 4. Workflow / Langkah Pengerjaan
-### 4.1 Data Cleaning & Preprocessing
-- Lowercasing
-- Remove noise: HTML tags, URL, angka, tanda baca, emoji
-- Tokenization
-- Stopword removal
-- Lemmatization
-- Membuat kolom tambahan: cleaned_title, cleaned_content, content_length
-- Menghitung sentiment polarity menggunakan TextBlob/VADER
-Insight: Teks menjadi konsisten dan siap untuk NLP & model prediksi.
+## Objective (Business-Oriented)
 
-### 4.2 Exploratory Data Analysis (EDA)
-- Distribusi Rating: Mayoritas rating 4–5, menunjukkan review lebih informatif dari angka rating.
-- Distribusi Kategori: Electronics & Clothing paling populer.
-- Rata-rata Rating per Kategori: Health & Beauty paling konsisten, Electronics banyak ulasan tapi rating fluktuatif.
-- Wordcloud Review Content: Dominan kata good, great, quality → review positif tapi generik.
-- Correlation Heatmap: Antar fitur numerik (rating, content_length, sentiment_score) sangat lemah → rating tidak dipengaruhi langsung oleh panjang review atau sentiment polarity.
+* Membantu tim underwriting mengelompokkan pelanggan berdasarkan tingkat risiko
+* Mendukung tim pricing dalam menentukan **tier premi**
+* Memberikan simulasi kebijakan (what-if analysis) untuk menurunkan biaya klaim
 
-### 4.3 Sentiment Score Analysis (Tanpa Label)
-- Menghitung polarity (-1 sampai 1)
-- Rata-rata per kategori
-Insight:
-- Semua kategori mayoritas positif
-- Electronics lebih rendah dibanding kategori lain → sejalan dengan rating
+---
 
-### 4.4 NLP Analysis – Top Words & N-Grams
+## Stakeholders
 
-- Top Words: good, great, product, price, quality
-- N-Gram Analysis: “great product”, “good quality”, “worth the money”
-Insight: Menunjukkan opini utama konsumen tentang kualitas & harga
+* **Underwriting Team** – klasifikasi risiko pelanggan
+* **Pricing Team** – penentuan premi berbasis risiko
+* **Marketing / Health Program Team** – program preventif (diet, stop smoking)
 
-### 4.5 Balanced Rating Classification
-- Membuat kelas rating: Low, Mid, High
-- Model: Logistic Regression / SVM / Random Forest
-- Hasil: F1-score tinggi → model mendeteksi review berkualitas rendah dengan akurat
+---
 
-### 4.6 Rating Regression Model
-- Model: Random Forest Regressor
-- Fitur: content_length, sentiment score, kategori (encoded)
-Contoh prediksi:
-sample_review = "this product is absolutely great and worth the money"
-Predicted rating → 4.11
-Insight: Model mampu memprediksi rating akhir dari teks, bermanfaat untuk deteksi potensi komplain sejak awal.
+## Dataset
 
-### 4.7 Final Insights
+* Source: Medical Insurance Cost Dataset (Kaggle)
+* Records: 1,338 pelanggan
+* Key Features:
 
-- Electronics: laris, ulasan negatif terbanyak, sentiment rendah
-- Health & Beauty: stabil, disukai pembeli
-- Sentiment score vs rating: korelasi lemah → rating tinggi tidak selalu kualitas tinggi
-- Top Words & N-Grams: fokus pada kualitas & harga
-- Pipeline end-to-end: Cleaning → EDA → NLP → Modeling → Prediction → Insight
+  * Age, BMI, Smoker Status, Children, Region
+  * Target: Insurance Charges
 
-### Visualisasi
+---
 
-- Distribusi rating
+## Tools & Workflow
 
-  <img width="540" height="391" alt="image" src="https://github.com/user-attachments/assets/f9db9524-014d-4557-90f1-3502be20e213" />
+**Python (Pandas, NumPy)** – data cleaning & analysis
+**EDA & Visualization** – identifikasi pola risiko
+**Scikit-Learn** – regression & risk modeling
+**Scenario Analysis** – simulasi kebijakan bisnis
 
-  Mayoritas rating 4–5.
+Workflow:
 
-- Distribusi kategori
-  <img width="1147" height="449" alt="image" src="https://github.com/user-attachments/assets/dfb79166-e567-4577-a07f-bcde3d5ddd80" />
+1. Data Cleaning & Validation
+2. Exploratory Data Analysis (EDA)
+3. Risk Scoring Development (0–100)
+4. Cost Prediction (Regression Model)
+5. Scenario Analysis (Policy Simulation)
+6. Business Insight & Recommendation
 
-  Electronics & Clothing paling populer.
+---
 
-- Rata-rata rating per kategori
-  <img width="1147" height="526" alt="image" src="https://github.com/user-attachments/assets/0b491c71-30d8-4b6a-9f49-dd7d33a8ce1a" />
+## Key Analysis & Insights
 
-  Health & Beauty paling konsisten, Electronics banyak ulasan tapi rating fluktuatif.
+### Risk Drivers
 
-- Correlation heatmap
-  <img width="900" height="657" alt="image" src="https://github.com/user-attachments/assets/3b0a5584-89b5-4c6c-a3d0-437be191699f" />
+* **Smoker status** meningkatkan biaya hingga ±200–300%
+* **BMI tinggi** berhubungan langsung dengan lonjakan biaya
+* **Usia** menunjukkan peningkatan risiko yang stabil
 
-  Hubungan di antara kolom penting positif namun lemah sehingga tidak berpengaruh secara langsung.
+### High-Risk Segment
 
-- Wordcloud & Top Words
-  
-  <img width="950" height="602" alt="image" src="https://github.com/user-attachments/assets/9c9a7ae2-fc4f-43e0-b6dd-6f9927ef019d" />
+Pelanggan dengan kombinasi:
 
-  Dominan kata good, great, quality yang menandakan review positif.
+* Smoker
+* BMI tinggi
+* Usia menengah–lanjut
 
-- Sentiment Score per kategori
-  
-  <img width="717" height="437" alt="image" src="https://github.com/user-attachments/assets/bfb1a1e9-579e-4b5d-87e4-c54c53937990" />
+Merupakan kontributor biaya tertinggi.
 
-  Review Title dan Review Content nya menyatakan review sangat positif di antara musical instruments, toys n games, dan office product, sebaliknya electronics sebagai kategori rating   terbanyak memiliki skor rendah ke 3/9
-  
-## 8. Tech Stack
-- Python (Pandas, Numpy)
-- Matplotlib, Seaborn
-- Scikit-Learn
-- NLTK / spaCy
-- TextBlob / VADER
-- WordCloud
+---
 
-## 9. Kesimpulan / Takeaways
+## Scenario Analysis (What-If)
 
-Proyek ini menunjukkan bagaimana NLP dan predictive modeling dapat digunakan untuk memahami opini pelanggan, mendukung keputusan marketing, serta menyediakan insight actionable untuk penjual dan pembeli.
+* Menurunkan BMI sebesar 5 poin → penurunan prediksi biaya signifikan
+* Perubahan status **smoker → non-smoker** memberikan dampak terbesar
+
+Simulasi ini membantu tim memahami **dampak kebijakan preventif sebelum diterapkan**.
+
+---
+
+## Business Recommendations
+
+* Terapkan **tiered premium pricing** berbasis risk score
+* Berikan **diskon premi** bagi pelanggan yang mengikuti program kesehatan
+* Prioritaskan program stop-smoking untuk segmen risiko tinggi
+
+---
+
+## Business Impact (Estimated)
+
+* Potensi pengurangan biaya klaim jangka menengah
+* Profil risiko pelanggan lebih terkendali
+* Strategi pricing lebih transparan dan adil
+
+---
+
+## Takeaway
+
+Project ini menunjukkan bagaimana analisis data dapat:
+
+* Menghubungkan data → keputusan bisnis
+* Mendukung strategi pricing & risk management
+* Digunakan langsung oleh tim non-teknis dalam pengambilan keputusan
